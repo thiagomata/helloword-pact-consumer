@@ -1,0 +1,177 @@
+{
+    "provider": {
+        "name": "hello_world_provider"
+    },
+    "consumer": {
+        "name": "hello_world_consumer"
+    },
+    "interactions": [
+        {
+            "description": "Request hello-world with name",
+            "request": {
+                "method": "GET",
+                "path": "/hello-world",
+                "query": {
+                    "name": [
+                        "bob"
+                    ]
+                },
+                "matchingRules": {
+                    "query": {
+                        "name": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "bob"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "path": {
+                        
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "id": 1500,
+                    "content": "Hello bob"
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.content": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                },
+                "generators": {
+                    "body": {
+                        "$.id": {
+                            "type": "RandomInt",
+                            "min": 1000,
+                            "max": 2000
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "description": "a empty request of hello world",
+            "request": {
+                "method": "GET",
+                "path": "/hello-world"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "id": 100,
+                    "content": "Hello World"
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.content": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "description": "a named request of hello world",
+            "request": {
+                "method": "GET",
+                "path": "/hello-world",
+                "query": {
+                    "name": [
+                        "johny"
+                    ]
+                },
+                "matchingRules": {
+                    "queryname": {
+                        "": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "johny"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "id": 1500,
+                    "content": "Hello johny"
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "integer"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.content": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.10"
+        }
+    }
+}
