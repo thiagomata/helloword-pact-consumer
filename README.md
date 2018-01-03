@@ -1,6 +1,6 @@
 # helloword-pact-consumer
 
-This project it is a study about how to use the PACT [https://docs.pact.io/] into the Java [https://github.com/DiUS/pact-jvm.
+This project it is a study about how to use the PACT https://docs.pact.io/ into the Java https://github.com/DiUS/pact-jvm.
     
 ## Consumer
 
